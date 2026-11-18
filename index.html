@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Геометрия — Ұқсас фигуралар</title>
+<style>
+:root{--ink:#1c2733;--navy:#1f3a5f;--mute:#5a6675;--line:#c9d1dc;--bg:#f6f7f9;--card:#fff;--red:#8a1c1c;--ok:#2e6b3e}
+@media (prefers-color-scheme:dark){:root{--ink:#e8ecf2;--navy:#9bb9e3;--mute:#a1acbb;--line:#3a4657;--bg:#141a22;--card:#1c242f;--red:#e58a8a;--ok:#7fcf93}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Georgia,"Times New Roman",serif}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px}
+h1{font-size:1.45rem;line-height:1.3;margin:0 0 6px;color:var(--navy)}
+em,.ru{font-style:italic;color:var(--mute)}
+.hide{display:none!important}
+.meta{margin:14px 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.95rem}
+label.f{display:block;margin:16px 0 6px;font-weight:700}
+input[type=text],select{width:100%;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.vars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vars label{border:1px solid var(--line);border-radius:4px;padding:12px;text-align:center;cursor:pointer}
+.vars label:has(input:checked){border-color:var(--navy);background:var(--navy);color:#fff}
+.vars input{position:absolute;opacity:0}
+.note{background:var(--bg);border-left:4px solid var(--red);padding:10px 14px;margin:18px 0;font-size:.92rem}
+button{font:inherit;font-weight:700;background:var(--navy);color:#fff;border:0;border-radius:4px;padding:12px 28px;cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
+:focus-visible{outline:3px solid #d8a400;outline-offset:2px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700}
+.timer{font-variant-numeric:tabular-nums;border:1px solid var(--line);padding:2px 12px;border-radius:4px}
+.timer.low{color:var(--red);border-color:var(--red)}
+.prog{height:5px;background:var(--line);border-radius:3px;margin-bottom:18px}
+.prog div{height:100%;background:var(--navy);border-radius:3px;transition:width .3s}
+.q p{margin:0 0 6px}.q .kk{font-size:1.12rem}
+svg{display:block;width:100%;max-width:440px;margin:14px auto;background:var(--card);border:1px solid var(--line);border-radius:4px}
+svg polygon,svg rect{fill:rgba(31,58,95,.09);stroke:var(--navy);stroke-width:2;stroke-linejoin:round}
+svg line.de{stroke:var(--red);stroke-width:2}svg circle{fill:var(--red)}
+svg text{font-family:Georgia,serif;font-size:14px;fill:var(--ink)}
+svg .v{font-weight:700;font-style:italic;fill:var(--navy);font-size:15px}
+svg .s{fill:var(--red);font-weight:700}svg .a{fill:var(--ok);font-size:12px;font-weight:700}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:4px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt:has(input:checked){border-color:var(--navy);background:rgba(31,58,95,.1)}
+.opt input{margin-top:6px}.opt em{display:block;font-size:.88rem}
+.num{max-width:260px;font-size:1.2rem}
+.foot{display:flex;justify-content:flex-end;margin-top:22px}
+.modal{position:fixed;inset:0;background:rgba(10,15,22,.75);display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}
+.modal .card{max-width:480px;border-top:5px solid var(--red)}
+.score{font-size:3rem;font-weight:700;color:var(--navy);margin:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="start" class="card">
+  <h1>Тест: Ұқсас фигуралар және олардың қасиеттері. Үшбұрыштар ұқсастығының белгілері</h1>
+  <p class="ru">Подобные фигуры и их свойства. Признаки подобия треугольников</p>
+  <div class="meta">
+    <div><b>Пән / Предмет:</b> Геометрия</div>
+    <div><b>Математика пәні мұғалімі:</b> Кунгозин Даулет Багдашұлы <em>— учитель математики</em></div>
+    <div><b>Оқу мақсаты:</b> 9.1.4.13 <em>— знать определение и свойства подобных фигур</em></div>
+  </div>
+  <label class="f" for="fio">Аты-жөні / <em>Фамилия и имя</em></label>
+  <input type="text" id="fio" autocomplete="off" placeholder="Введите ФИ">
+  <label class="f" for="cls">Сынып / <em>Класс</em></label>
+  <select id="cls"><option value="">— таңдаңыз / выберите —</option><option>9Ә</option></select>
+  <label class="f">Нұсқа / <em>Вариант</em></label>
+  <div class="vars">
+    <label><input type="radio" name="v" value="1">1-нұсқа <em>(Вариант 1)</em></label>
+    <label><input type="radio" name="v" value="2">2-нұсқа <em>(Вариант 2)</em></label>
+  </div>
+  <div class="note">10 сұрақ, әр сұраққа 1,5 минут, әр дұрыс жауап — 1 балл. Тест барысында бетті немесе қойындыны ауыстыруға болмайды: ауыстырылса, баға 1 баллға төмендейді.<br>
+  <em>10 вопросов, 1,5 минуты на вопрос, 1 балл за верный ответ. Во время теста нельзя сворачивать вкладку: в этом случае оценка будет снижена на 1 балл.</em></div>
+  <button id="go" disabled>Келесі / Далее</button>
+</section>
+
+<section id="quiz" class="card hide">
+  <div class="top"><span id="qno"></span><span class="timer" id="tm">01:30</span></div>
+  <div class="prog"><div id="bar"></div></div>
+  <div class="q" id="qbody"></div>
+  <div class="foot"><button id="nx"></button></div>
+</section>
+
+<section id="res" class="card hide">
+  <h1>Тест аяқталды <em>— Тест завершён</em></h1>
+  <div class="meta" id="who"></div>
+  <div class="score" id="sc"></div>
+  <p id="pen"></p>
+  <p id="st" class="ru"></p>
+  <button id="retry" class="hide">Қайта жіберу / Отправить повторно</button>
+</section>
+</div>
+
+<div id="warn" class="modal hide" role="alertdialog">
+  <div class="card">
+    <h1 style="color:var(--red)">Ескерту / <em>Предупреждение</em></h1>
+    <p>Сіз тест бетінен шықтыңыз (<b id="wn"></b> рет). Тест жалғасады, бірақ нәтижеңіз 1 баллға төмендейді.</p>
+    <p class="ru">Вы покинули вкладку с тестом (раз: <span id="wn2"></span>). Тест продолжается, но оценка будет снижена на 1 балл.</p>
+    <button id="wok">Түсінікті / Понятно</button>
+  </div>
+</div>
+
+<script>
+/* ВСТАВЬТЕ СЮДА URL веб-приложения Apps Script (заканчивается на /exec) */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnax3wGRB_ey-aQ46Y35IaBVCwRkNBpgT6jFh6pGzWget5ZGzgc3r53GkxaHHNJ7Bk/exec";
+const TIME = 90; // секунд на вопрос
+
+/* ---------- SVG-помощники ---------- */
+const svg=s=>`<svg viewBox="0 0 340 180" role="img">${s}</svg>`;
+const poly=p=>`<polygon points="${p.map(x=>x.join(',')).join(' ')}"/>`;
+const tx=(x,y,t,c='')=>t?`<text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" class="${c}" text-anchor="middle">${t}</text>`:'';
+const sc=(ox,oy,s)=>[[0,0],[100,0],[35,-70]].map(([x,y])=>[ox+x*s,oy+y*s]);
+function tri(p,n,s=[],a=[]){
+  const c=[0,1].map(i=>(p[0][i]+p[1][i]+p[2][i])/3);let o=poly(p);
+  p.forEach((v,i)=>{
+    const dx=v[0]-c[0],dy=v[1]-c[1],d=Math.hypot(dx,dy);
+    o+=tx(v[0]+dx/d*13,v[1]+dy/d*13,n[i],'v')+tx(v[0]-dx/d*30,v[1]-dy/d*30,a[i],'a');
+    const w=p[(i+1)%3],mx=(v[0]+w[0])/2,my=(v[1]+w[1])/2,ex=mx-c[0],ey=my-c[1],e=Math.hypot(ex,ey);
+    o+=tx(mx+ex/e*13,my+ey/e*13,s[i],'s');
+  });
+  return o;
+}
+const two=(o={})=>svg(tri(sc(20,140,.8),o.n1||['A','B','C'],o.s1,o.a1)+tri(sc(150,150,1.4),o.n2||['A₁','B₁','C₁'],o.s2,o.a2)+tx(170,16,o.cap,'cap'));
+const dep=o=>svg(poly([[40,150],[140,20],[280,150]])+
+  '<line class="de" x1="80" y1="98" x2="224" y2="98"/><circle cx="80" cy="98" r="3"/><circle cx="224" cy="98" r="3"/>'+
+  tx(140,10,'B','v')+tx(28,158,'A','v')+tx(293,158,'C','v')+tx(66,98,'D','v')+tx(238,98,'E','v')+
+  tx(100,53,o.bd,'s')+tx(48,120,o.da,'s')+tx(160,166,o.ac,'s')+tx(152,88,o.de,'s'));
+const sq=svg('<rect x="50" y="55" width="70" height="70"/><rect x="160" y="30" width="120" height="120"/>'+tx(85,140,'a','v')+tx(220,165,'b','v'));
+const m=(kk,ru,f,o,a)=>({t:'m',kk,ru,f,o,a});
+const n=(kk,ru,f,a)=>({t:'n',kk,ru,f,a});
+
+/* ---------- ВОПРОСЫ ---------- */
+const V={
+1:[
+ m("Қандай екі фигура ұқсас деп аталады?","Какие две фигуры называются подобными?",two(),
+  [["Аудандары тең фигуралар","Фигуры с равными площадями"],["Бірін екіншісіне пропорционал үлкейту немесе кішірейту арқылы алуға болатын, пішіні бірдей фигуралар","Фигуры одной формы, получаемые друг из друга пропорциональным увеличением или уменьшением"],["Периметрлері тең фигуралар","Фигуры с равными периметрами"],["Барлық қабырғалары тең фигуралар","Фигуры, у которых все стороны равны"]],1),
+ m("Ұқсас үшбұрыштардың ұқсастық коэффициенті k = 2. Олардың периметрлерінің қатынасы неге тең?","Коэффициент подобия подобных треугольников k = 2. Чему равно отношение их периметров?",two({cap:"k = 2"}),["1","2","4","8"],1),
+ m("Суретте ∠A = ∠A₁ = 50°, ∠B = ∠B₁ = 70°. ABC және A₁B₁C₁ үшбұрыштары ұқсас па? Қай белгі бойынша?","На рисунке ∠A = ∠A₁ = 50°, ∠B = ∠B₁ = 70°. Подобны ли треугольники ABC и A₁B₁C₁? По какому признаку?",two({a1:['50°','70°',''],a2:['50°','70°','']}),
+  [["Екі бұрышы бойынша ұқсас","Подобны по двум углам"],["Үш қабырғасы бойынша ұқсас","Подобны по трём сторонам"],["Екі қабырғасы мен арасындағы бұрышы бойынша ұқсас","Подобны по двум сторонам и углу между ними"],["Ұқсас емес","Не подобны"]],0),
+ m("Ұқсастық коэффициенті k = 3 болса, ұқсас үшбұрыштар аудандарының қатынасы неге тең?","Если коэффициент подобия k = 3, чему равно отношение площадей подобных треугольников?",two({cap:"k = 3"}),["3","6","9","27"],2),
+ m("Суретте DE ∥ AC. ABC үшбұрышына қандай үшбұрыш ұқсас?","На рисунке DE ∥ AC. Какой треугольник подобен треугольнику ABC?",dep({}),
+  [["BDE үшбұрышы","треугольник BDE"],["ADE үшбұрышы","треугольник ADE"],["CDE үшбұрышы","треугольник CDE"],["ADC үшбұрышы","треугольник ADC"]],0),
+ n("ABC ∼ A₁B₁C₁. AB = 6 см, BC = 8 см, A₁B₁ = 9 см. B₁C₁ қабырғасын табыңыз (см).","ABC ∼ A₁B₁C₁. AB = 6 см, BC = 8 см, A₁B₁ = 9 см. Найдите сторону B₁C₁ (см).",two({s1:['6','8',''],s2:['9','x','']}),12),
+ n("ABC ∼ A₁B₁C₁, ұқсастық коэффициенті k = 4. ABC үшбұрышының периметрі 15 см. A₁B₁C₁ үшбұрышының периметрін табыңыз (см).","ABC ∼ A₁B₁C₁, коэффициент подобия k = 4. Периметр треугольника ABC равен 15 см. Найдите периметр A₁B₁C₁ (см).",two({cap:"k = 4,  P₁ = 15,  P₂ = ?"}),60),
+ n("Ұқсастық коэффициенті k = 2 болатын ұқсас үшбұрыштардың кішісінің ауданы 12 см². Үлкен үшбұрыштың ауданын табыңыз (см²).","Коэффициент подобия подобных треугольников k = 2, площадь меньшего 12 см². Найдите площадь большего (см²).",two({cap:"k = 2,  S₁ = 12,  S₂ = ?"}),48),
+ n("DE ∥ AC, BD = 4 см, DA = 2 см, AC = 9 см. DE кесіндісінің ұзындығын табыңыз (см).","DE ∥ AC, BD = 4 см, DA = 2 см, AC = 9 см. Найдите длину отрезка DE (см).",dep({bd:'4',da:'2',ac:'9',de:'x'}),6),
+ n("ABC ∼ MNK, ∠A = 40°, ∠B = 65°. ∠K бұрышын табыңыз (градус).","ABC ∼ MNK, ∠A = 40°, ∠B = 65°. Найдите угол K (в градусах).",two({n2:['M','N','K'],a1:['40°','65°',''],a2:['','','x']}),75)
+],
+2:[
+ m("Ұқсас фигуралардың сәйкес бұрыштары туралы қай тұжырым дұрыс?","Какое утверждение о соответствующих углах подобных фигур верно?",two(),
+  [["Сәйкес бұрыштары өзара тең","Соответствующие углы равны"],["Сәйкес бұрыштары k есе үлкен","Соответствующие углы в k раз больше"],["Сәйкес бұрыштарының қосындысы 180°","Сумма соответствующих углов равна 180°"],["Бұрыштар арасында байланыс жоқ","Между углами нет связи"]],0),
+ m("Қабырғалары 3, 4, 5 және 6, 8, 10 болатын үшбұрыштар ұқсас па? Қай белгі бойынша?","Подобны ли треугольники со сторонами 3, 4, 5 и 6, 8, 10? По какому признаку?",two({s1:['4','5','3'],s2:['8','10','6']}),
+  [["Үш қабырғасы бойынша ұқсас","Подобны по трём сторонам"],["Екі бұрышы бойынша ұқсас","Подобны по двум углам"],["Екі қабырғасы мен арасындағы бұрышы бойынша ұқсас","Подобны по двум сторонам и углу между ними"],["Ұқсас емес","Не подобны"]],0),
+ m("Суретте AB = 4, AC = 6, A₁B₁ = 8, A₁C₁ = 12, ∠A = ∠A₁ = 60°. Үшбұрыштар қай белгі бойынша ұқсас?","На рисунке AB = 4, AC = 6, A₁B₁ = 8, A₁C₁ = 12, ∠A = ∠A₁ = 60°. По какому признаку подобны треугольники?",two({s1:['4','','6'],s2:['8','','12'],a1:['60°','',''],a2:['60°','','']}),
+  [["Екі қабырғасы пропорционал, арасындағы бұрыштары тең","По двум пропорциональным сторонам и равному углу между ними"],["Екі бұрышы бойынша","По двум углам"],["Үш қабырғасы бойынша","По трём сторонам"],["Ұқсас емес","Не подобны"]],0),
+ m("Ұқсас үшбұрыштар аудандарының қатынасы 16 болса, ұқсастық коэффициенті неге тең?","Если отношение площадей подобных треугольников равно 16, чему равен коэффициент подобия?",two({cap:"S₂ : S₁ = 16"}),["2","4","8","16"],1),
+ m("Төмендегі фигуралардың қайсысы әрқашан ұқсас болады?","Какие из этих фигур всегда подобны?",sq,
+  [["Кез келген екі шаршы","Любые два квадрата"],["Кез келген екі тіктөртбұрыш","Любые два прямоугольника"],["Кез келген екі ромб","Любые два ромба"],["Кез келген екі тең бүйірлі үшбұрыш","Любые два равнобедренных треугольника"]],0),
+ n("ABC ∼ A₁B₁C₁, AB = 4 см, AC = 6 см, A₁B₁ = 10 см. A₁C₁ қабырғасын табыңыз (см).","ABC ∼ A₁B₁C₁, AB = 4 см, AC = 6 см, A₁B₁ = 10 см. Найдите сторону A₁C₁ (см).",two({s1:['4','','6'],s2:['10','','x']}),15),
+ n("Ұқсастық коэффициенті k = 3. Үлкен үшбұрыштың периметрі 45 см. Кіші үшбұрыштың периметрін табыңыз (см).","Коэффициент подобия k = 3. Периметр большего треугольника 45 см. Найдите периметр меньшего (см).",two({cap:"k = 3,  P₂ = 45,  P₁ = ?"}),15),
+ n("Ұқсас үшбұрыштардың аудандары 18 см² және 72 см². Ұқсастық коэффициентін табыңыз (k > 1).","Площади подобных треугольников 18 см² и 72 см². Найдите коэффициент подобия (k > 1).",two({cap:"S₁ = 18,  S₂ = 72"}),2),
+ n("DE ∥ AC, BD = 3 см, DA = 6 см, DE = 5 см. AC кесіндісінің ұзындығын табыңыз (см).","DE ∥ AC, BD = 3 см, DA = 6 см, DE = 5 см. Найдите длину отрезка AC (см).",dep({bd:'3',da:'6',ac:'x',de:'5'}),15),
+ n("ABC ∼ MNK, ∠B = 35°, ∠C = 85°. ∠M бұрышын табыңыз (градус).","ABC ∼ MNK, ∠B = 35°, ∠C = 85°. Найдите угол M (в градусах).",two({n2:['M','N','K'],a1:['','35°','85°'],a2:['x','','']}),60)
+]};
+
+/* ---------- ЛОГИКА ---------- */
+const $=id=>document.getElementById(id);
+let st={q:0,ans:[],sw:0,away:false,run:false,end:0,tm:null,v:1,Q:[]};
+const show=id=>["start","quiz","res"].forEach(x=>$(x).classList.toggle("hide",x!==id));
+function validate(){$("go").disabled=!($("fio").value.trim().length>=3&&$("cls").value&&document.querySelector("input[name=v]:checked"))}
+["input","change"].forEach(e=>document.addEventListener(e,validate));
+
+$("go").onclick=()=>{
+  st={q:0,ans:[],sw:0,away:false,run:true,end:0,tm:null,v:+document.querySelector("input[name=v]:checked").value,Q:null};
+  st.Q=V[st.v];show("quiz");render();
+  st.tm=setInterval(tick,250);
+};
+function tick(){
+  const left=Math.max(0,Math.ceil((st.end-Date.now())/1000));
+  $("tm").textContent=String(Math.floor(left/60)).padStart(2,"0")+":"+String(left%60).padStart(2,"0");
+  $("tm").classList.toggle("low",left<=15);
+  if(left<=0)next();
+}
+function render(){
+  const q=st.Q[st.q],L="ABCD";
+  $("qno").textContent=`Сұрақ ${st.q+1} / 10`;$("bar").style.width=(st.q/10*100)+"%";
+  let h=`<p class="kk">${q.kk}</p><p class="ru"><em>${q.ru}</em></p>${q.f}`;
+  if(q.t==="m"){
+    h+=q.o.map((o,i)=>{const k=Array.isArray(o)?o[0]:o,r=Array.isArray(o)?`<em>${o[1]}</em>`:"";
+      return `<label class="opt"><input type="radio" name="o" value="${i}"><span><b>${L[i]})</b> ${k}${r}</span></label>`}).join("");
+  }else{
+    h+=`<label class="f" for="ans">Жауабы (сан) / <em>Ответ (число)</em></label><input type="text" id="ans" class="num" inputmode="decimal" autocomplete="off" placeholder="0">`;
+  }
+  $("qbody").innerHTML=h;
+  $("nx").textContent=st.q===9?"Аяқтау / Завершить":"Келесі / Далее";
+  st.end=Date.now()+TIME*1000;tick();
+  const a=$("ans");if(a){a.focus();a.onkeydown=e=>{if(e.key==="Enter")next()}}
+}
+$("nx").onclick=()=>next();
+function next(){
+  if(!st.run)return;
+  const q=st.Q[st.q];let v=null;
+  if(q.t==="m"){const c=document.querySelector("input[name=o]:checked");v=c?+c.value:null}
+  else{const x=parseFloat(($("ans").value||"").replace(",","."));v=isNaN(x)?null:x}
+  st.ans.push(v);st.q++;
+  st.q<10?render():finish();
+}
+
+/* ---------- Контроль вкладки ---------- */
+function leave(){if(st.run&&!st.away){st.away=true;st.sw++}}
+function back(){if(st.run&&st.away){st.away=false;$("wn").textContent=$("wn2").textContent=st.sw;$("warn").classList.remove("hide")}}
+document.addEventListener("visibilitychange",()=>document.hidden?leave():back());
+window.addEventListener("blur",leave);window.addEventListener("focus",back);
+$("wok").onclick=()=>$("warn").classList.add("hide");
+
+/* ---------- Итоги и отправка ---------- */
+function finish(){
+  st.run=false;clearInterval(st.tm);
+  const raw=st.ans.reduce((s,v,i)=>{const q=st.Q[i];return s+(v!==null&&(q.t==="m"?v===q.a:Math.abs(v-q.a)<1e-6)?1:0)},0);
+  const pen=st.sw>0?1:0,fin=Math.max(0,raw-pen);
+  const fio=$("fio").value.trim(),cls=$("cls").value;
+  const key="att:"+fio.toLowerCase()+"|"+cls,att=(+localStorage.getItem(key)||0)+1;
+  try{localStorage.setItem(key,att)}catch(e){}
+  st.payload={fio,cls,variant:st.v,score:fin,raw,max:10,switches:st.sw,penalty:pen,attemptLocal:att};
+  $("who").innerHTML=`${fio}, ${cls} сынып <em>(класс)</em>, ${st.v}-нұсқа <em>(вариант ${st.v})</em>`;
+  $("sc").textContent=`${fin} / 10`;
+  $("pen").innerHTML=pen?`Қойындыны ауыстыру: <b>${st.sw}</b> рет, 1 балл алынды. <em>Вкладку сворачивали: ${st.sw} раз(а), снят 1 балл.</em>`:`Қойынды ауыстырылған жоқ. <em>Вкладка не сворачивалась.</em>`;
+  show("res");send();
+}
+async function send(){
+  $("st").textContent="Нәтиже жіберілуде… / Отправка результата…";$("retry").classList.add("hide");
+  if(SCRIPT_URL.indexOf("http")!==0){$("st").textContent="URL Apps Script көрсетілмеген — нәтиже кестеге жіберілмеді. / URL Apps Script не указан — результат не отправлен.";return}
+  try{
+    await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(st.payload)});
+    $("st").textContent="Нәтиже мұғалімге жіберілді. / Результат отправлен учителю.";
+  }catch(e){
+    $("st").textContent="Жіберу қатесі. Интернетті тексеріп, қайталаңыз. / Ошибка отправки. Проверьте интернет и повторите.";$("retry").classList.remove("hide");
+  }
+}
+$("retry").onclick=send;
+</script>
+</body>
+</html>
